@@ -29,5 +29,5 @@ pnpm add -D @ozzyczech/tsconfig
 ## Releasing a new version
 
 ```shell
-npx np --no-test
+npx np --no-tests
 ```
