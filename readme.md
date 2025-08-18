@@ -25,3 +25,9 @@ pnpm add -D @ozzyczech/tsconfig
 	"extends": "@ozzyczech/tsconfig"
 }
 ```
+
+## Releasing a new version
+
+```shell
+npx np --no-test
+```
