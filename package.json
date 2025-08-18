@@ -1,0 +1,24 @@
+{
+	"name": "@ozzyczech/tsconfig",
+	"version": "1.0.0",
+	"description": "Shared TypeScript config",
+	"main": "index.js",
+	"repository": "OzzyCzech/tsconfig",
+	"author": "Roman Ožana <roman@ozana.cz> https://ozana.cz",
+	"license": "MIT",
+	"sideEffects": false,
+	"exports": "./tsconfig.json",
+	"files": [
+		"tsconfig.json"
+	],
+	"engines": {
+		"node": ">=20"
+	},
+	"keywords": [
+		"tsconfig",
+		"typescript",
+		"ts",
+		"config",
+		"configuration"
+	]
+}
