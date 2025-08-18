@@ -1,6 +1,5 @@
 {
 	"name": "@ozzyczech/tsconfig",
-	"version": "1.0.0",
 	"description": "Shared TypeScript config",
 	"main": "index.js",
 	"repository": "OzzyCzech/tsconfig",
