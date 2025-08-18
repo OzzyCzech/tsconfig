@@ -1,7 +1,7 @@
 {
 	"name": "@ozzyczech/tsconfig",
 	"description": "Shared TypeScript config",
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"main": "index.js",
 	"repository": "OzzyCzech/tsconfig",
 	"author": "Roman Ožana <roman@ozana.cz> https://ozana.cz",
