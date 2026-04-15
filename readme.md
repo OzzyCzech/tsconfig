@@ -18,7 +18,7 @@ pnpm add -D @ozzyczech/tsconfig
 
 ## Usage
 
-`tsconfig.json`
+Default — Node.js / Bun library:
 
 ```json
 {
@@ -26,8 +26,18 @@ pnpm add -D @ozzyczech/tsconfig
 }
 ```
 
+DOM / browser / React variant:
+
+```json
+{
+	"extends": "@ozzyczech/tsconfig/dom"
+}
+```
+
 ## Releasing a new version
 
+Push a semver tag — the `publish.yml` workflow will build and publish to npm with provenance, then create a GitHub Release.
+
 ```shell
-npx np --no-tests
+git tag v2.0.0 && git push origin v2.0.0
 ```

@@ -1,0 +1,9 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"module": "esnext", // Bundler decides the actual module format; TS should emit plain ESM.
+		"moduleResolution": "bundler", // Matches Vite / esbuild / Bun / Next / Webpack semantics — allows extensionless imports and package exports.
+		"lib": ["DOM", "DOM.Iterable", "ES2024"], // Add browser DOM types on top of the base ES2024 lib.
+		"jsx": "react-jsx" // Modern React 17+ JSX transform (no need to import React in scope).
+	}
+}

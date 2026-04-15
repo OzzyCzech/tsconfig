@@ -1,37 +1,32 @@
 {
 	"compilerOptions": {
 		"incremental": true, // Enable incremental compilation for faster builds.
-		"outDir": "${configDir}/dist", // Use a variable for the output directory to allow for dynamic configuration.
-		"module": "esnext", // Use the latest ECMAScript module system for better compatibility with modern JavaScript.
-		"moduleResolution": "node", // Use Node.js module resolution strategy for better compatibility with Node.js and modern JavaScript tooling.
-		"moduleDetection": "force", // Force module detection to ensure that all files are treated as modules, which is useful for projects that mix ESM and CommonJS.
-		"allowSyntheticDefaultImports": true, // Allows default imports from modules that don't have a default export, which is useful for compatibility with CommonJS modules.
-		"esModuleInterop": true, // Emits runtime interop helpers for CommonJS default/namespace imports; pairs with allowSyntheticDefaultImports for correct type-check + runtime behavior.
-		"target": "esnext", // Target the latest ECMAScript version for better performance and features.
-		"lib": [
-			"DOM",
-			"DOM.Iterable",
-			"ES2023"
-		], // Include the latest DOM and ECMAScript libraries for better type support.
-		"resolveJsonModule": false, // Disable JSON module resolution for ESM, as it is not yet fully supported.
-		"jsx": "react-jsx", // Use the new JSX transform for React, which is more efficient and compatible with modern React versions.
-		"declaration": true, // Generates .d.ts files for TypeScript definitions.
-		"newLine": "lf", // Use LF line endings for consistency across platforms.
-		"stripInternal": true, // Strips out internal declarations from the output.
-		"strict": true, // Enables all strict type-checking options.
-		"erasableSyntaxOnly": true, // Only allows syntax that can be erased in the output.
-		"noImplicitReturns": true, // Ensures that all code paths in a function return a value.
-		"noImplicitOverride": true, // Disallows overriding methods without an explicit override modifier.
-		"noUnusedLocals": true, // Reports errors on unused local variables.
-		"noUnusedParameters": true, // Reports errors on unused function parameters.
-		"noFallthroughCasesInSwitch": true, // Prevents fallthrough cases in switch statements.
-		"noUncheckedIndexedAccess": true, // Ensures that indexed access types are checked for undefined.
-		"noPropertyAccessFromIndexSignature": false, // Allows property access from index signatures, which is useful for dynamic object types.
-		"noUncheckedSideEffectImports": true, // Ensures that imports with side effects are checked.
-		"noEmitOnError": true, // Prevents emitting files if there are any type errors.
-		"useDefineForClassFields": true, // Uses `define` semantics for class fields, which is the standard in modern JavaScript.
-		"skipLibCheck": true, // Skips type checking of declaration files, which can speed up the build process.
-		"isolatedModules": true // Ensures that each file can be transpiled independently, which is useful for projects using Babel or similar tools.
+		"outDir": "${configDir}/dist", // Use ${configDir} so the output resolves relative to the consuming tsconfig, not this file.
+		"module": "nodenext", // Modern Node.js ESM emit; matches runtime semantics (file extensions in imports, package.json "type" respected).
+		"moduleResolution": "nodenext", // Paired with module: nodenext. Replaces the legacy "node" resolver.
+		"moduleDetection": "force", // Treat every file as a module, even without imports/exports. Avoids accidental script-scope leaks.
+		"allowSyntheticDefaultImports": true, // Type-check default imports of CommonJS modules as if they had a default export.
+		"esModuleInterop": true, // Emits runtime interop helpers so CommonJS default/namespace imports work correctly.
+		"target": "esnext", // Emit modern JS; runtime is guaranteed by engines.node and runtime lib choices.
+		"lib": ["ES2024"], // Node 22+ / Bun support ES2024. No DOM here — use @ozzyczech/tsconfig/dom for browser code.
+		"resolveJsonModule": true, // Allow importing .json files (needed with ESM import attributes at runtime).
+		"declaration": true, // Emit .d.ts type declarations for published libraries.
+		"newLine": "lf", // Force LF line endings in emitted files across platforms.
+		"stripInternal": true, // Omit members marked with /** @internal */ from declaration output.
+		"strict": true, // Enable all strict type-checking options.
+		"erasableSyntaxOnly": true, // Disallow non-erasable syntax (enums, parameter properties, namespaces) so output stays compatible with type-stripping runtimes like Node/Bun/tsx.
+		"noImplicitReturns": true, // Every code path in a function must return a value.
+		"noImplicitOverride": true, // Require the `override` keyword when overriding a base class method.
+		"noUnusedLocals": true, // Error on unused local variables.
+		"noUnusedParameters": true, // Error on unused function parameters.
+		"noFallthroughCasesInSwitch": true, // Error on switch cases that fall through without break/return.
+		"noUncheckedIndexedAccess": true, // Indexed access returns T | undefined — forces explicit handling.
+		"noPropertyAccessFromIndexSignature": false, // Allow dot-access on index signatures (less noise when working with dynamic objects).
+		"noUncheckedSideEffectImports": true, // Verify that side-effect-only imports resolve to real modules.
+		"noEmitOnError": true, // Don't write output files if there are type errors.
+		"useDefineForClassFields": true, // Use ECMAScript `[[Define]]` semantics for class fields (standard behavior).
+		"skipLibCheck": true, // Skip type-checking of .d.ts in node_modules for faster builds.
+		"isolatedModules": true // Each file must be transpilable in isolation (required by esbuild, swc, Babel, Bun).
 	},
-	"exclude": ["${configDir}/dist"] // Exclude the output directory to prevent it from being included in the compilation.
+	"exclude": ["${configDir}/dist"]
 }
