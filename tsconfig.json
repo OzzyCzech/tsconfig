@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"incremental": true, // Enable incremental compilation for faster builds.
+		"incremental": false, // Off by default: library builds run a clean `rm -rf dist` first, and a leftover tsconfig.tsbuildinfo would make tsc consider the program up-to-date and emit nothing — publishing an empty dist. Enable per-project if you don't clean between builds.
 		"outDir": "${configDir}/dist", // Use ${configDir} so the output resolves relative to the consuming tsconfig, not this file.
 		"module": "nodenext", // Modern Node.js ESM emit; matches runtime semantics (file extensions in imports, package.json "type" respected).
 		"moduleResolution": "nodenext", // Paired with module: nodenext. Replaces the legacy "node" resolver.
